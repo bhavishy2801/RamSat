@@ -1,24 +1,24 @@
-# 🧮 RamSat: A Ramsey Theory Calculator  
+# RamSat: A Ramsey Theory Calculator  
 ### Computing Ramsey Numbers using the Pigeonhole Principle, Erdős Probabilistic Method, and SAT-Based Edge Coloring Verification
 
 ---
 
-## 📘 Overview
+## Overview
 
 **RamSat** is a computational framework designed to explore **Ramsey Theory** — the branch of combinatorics that reveals how **order inevitably emerges within sufficiently large structures**.
 
 This project computes and verifies **Ramsey numbers** using a hybrid of mathematical and computational approaches:
 
-- 🕳 **Pigeonhole Principle Bounds**
-- 🎲 **Erdős’ Probabilistic Method**
-- 🧩 **SAT-Based Edge Coloring Verification**
-- 🔢 **Combinatorial Bound Analysis**
+- **Pigeonhole Principle Bounds**
+- **Erdős’ Probabilistic Method**
+- **SAT-Based Edge Coloring Verification**
+- **Combinatorial Bound Analysis**
 
 RamSat aims to bridge **theoretical mathematics** and **computational verification**, providing an experimental platform for studying the transition from randomness to structure.
 
 ---
 
-## 🚀 Features
+## Features
 
 - ✅ Compute **upper and lower bounds** for Ramsey numbers  
 - ✅ Simulate **random edge colorings** using probabilistic analysis  
@@ -28,7 +28,7 @@ RamSat aims to bridge **theoretical mathematics** and **computational verificati
 
 ---
 
-## 🧠 Theoretical Background
+## Theoretical Background
 
 > **Ramsey’s Theorem:**  
 > For any positive integers \( r, s \), there exists a minimum number \( R(r, s) \) such that every red–blue coloring of the edges of a complete graph \( K_{R(r,s)} \) contains either a red \( K_r \) or a blue \( K_s \).
@@ -46,7 +46,7 @@ RamSat unites **three classical computational strategies**:
 
 ---
 
-## 🧩 System Architecture
+## System Architecture
 
 ```text
 +--------------------+
@@ -148,7 +148,7 @@ python main.py --mode prob --r 5 --s 5 --plot
 - R. L. Graham, B. L. Rothschild, J. H. Spencer, *"Ramsey Theory"*, Wiley, 1990  
 - V. Chvátal, *"A note on Ramsey numbers"*, *Journal of Combinatorial Theory*, 1970
 
-## 🧾 License
+## License
 
 This project is licensed under the **MIT License**.  
 See the [LICENSE](LICENSE) file for details.
