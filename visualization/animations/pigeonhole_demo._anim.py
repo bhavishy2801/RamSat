@@ -1,3 +1,4 @@
+import random
 from manim import *
 
 class PigeonholeDemo(Scene):
