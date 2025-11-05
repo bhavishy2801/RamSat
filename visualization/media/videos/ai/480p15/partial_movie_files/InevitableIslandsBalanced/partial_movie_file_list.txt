@@ -1,8 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:C:/Schedules for IIT/Codes/Python Codes-1/RamSat/visualization/media/videos/ai/480p15/partial_movie_files/InevitableIslandsBalanced/4188267458_4182107165_2126716171.mp4'
-file 'file:C:/Schedules for IIT/Codes/Python Codes-1/RamSat/visualization/media/videos/ai/480p15/partial_movie_files/InevitableIslandsBalanced/2720455775_254176040_2741813004.mp4'
-file 'file:C:/Schedules for IIT/Codes/Python Codes-1/RamSat/visualization/media/videos/ai/480p15/partial_movie_files/InevitableIslandsBalanced/1682994422_561068724_865044866.mp4'
-file 'file:C:/Schedules for IIT/Codes/Python Codes-1/RamSat/visualization/media/videos/ai/480p15/partial_movie_files/InevitableIslandsBalanced/3478290846_842757436_52041324.mp4'
-file 'file:C:/Schedules for IIT/Codes/Python Codes-1/RamSat/visualization/media/videos/ai/480p15/partial_movie_files/InevitableIslandsBalanced/3478290846_2379114234_52041324.mp4'
-file 'file:C:/Schedules for IIT/Codes/Python Codes-1/RamSat/visualization/media/videos/ai/480p15/partial_movie_files/InevitableIslandsBalanced/3478290846_1888338757_52041324.mp4'
-file 'file:C:/Schedules for IIT/Codes/Python Codes-1/RamSat/visualization/media/videos/ai/480p15/partial_movie_files/InevitableIslandsBalanced/3478290846_4229673186_708810542.mp4'

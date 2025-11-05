@@ -1,8 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:C:/Schedules for IIT/Codes/Python Codes-1/RamSat/visualization/media/videos/ai/480p15/partial_movie_files/InevitableIslandsNeuralRGB/4188267458_1425672693_985940263.mp4'
-file 'file:C:/Schedules for IIT/Codes/Python Codes-1/RamSat/visualization/media/videos/ai/480p15/partial_movie_files/InevitableIslandsNeuralRGB/3508581483_262961136_4200700337.mp4'
-file 'file:C:/Schedules for IIT/Codes/Python Codes-1/RamSat/visualization/media/videos/ai/480p15/partial_movie_files/InevitableIslandsNeuralRGB/491233324_428732850_1367665582.mp4'
-file 'file:C:/Schedules for IIT/Codes/Python Codes-1/RamSat/visualization/media/videos/ai/480p15/partial_movie_files/InevitableIslandsNeuralRGB/1717039440_3883219912_3948688465.mp4'
-file 'file:C:/Schedules for IIT/Codes/Python Codes-1/RamSat/visualization/media/videos/ai/480p15/partial_movie_files/InevitableIslandsNeuralRGB/3521518023_3621013082_3948688465.mp4'
-file 'file:C:/Schedules for IIT/Codes/Python Codes-1/RamSat/visualization/media/videos/ai/480p15/partial_movie_files/InevitableIslandsNeuralRGB/3521518023_2566494211_3948688465.mp4'
-file 'file:C:/Schedules for IIT/Codes/Python Codes-1/RamSat/visualization/media/videos/ai/480p15/partial_movie_files/InevitableIslandsNeuralRGB/3521518023_4229673186_4014836265.mp4'
