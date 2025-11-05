@@ -4,7 +4,7 @@ import itertools, random, numpy as np
 class RamseyInNeuralNets(Scene):
     def construct(self):
         # Title
-        title = Text("Cooking up Patterns — Ramsey Theory in Neural Nets", font_size=36)
+        title = Text("Discovering Patterns — Ramsey Theory in Neural Nets", font_size=36)
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)
