@@ -5,10 +5,17 @@
 
 ## Project Link
 
-### <span style="color: red;">[GitHub Project (Click Here)](https://github.com/bhavishy2801/RamSat)</span>
+#### [GitHub Project (Click Here)](https://github.com/bhavishy2801/RamSat)
 
 ---
 
+## Team
+
+- ***Bhavishy Agrawal [B24CS1023]***
+- ***Husain Mohammad Ali [B24CS1084]***
+- ***Hayagriv Desikan [B24CS1092]***
+
+---
 
 ## References
 
@@ -195,13 +202,5 @@ Graph Density: 1.0000
 ## License
 
 This project is released under the MIT License. See the `LICENSE` file for details.
-
----
-
-## Team
-
-- ***Bhavishy Agrawal [B24CS1023]***
-- ***Husain Mohammad Ali [B24CS1084]***
-- ***Hayagriv Desikan [B24CS1092]***
 
 ---
