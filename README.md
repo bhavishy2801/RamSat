@@ -5,8 +5,18 @@
 
 ## Project Link
 
-### [GitHub Project (Click Here)](https://github.com/bhavishy2801/RamSat)
+### <span style="color: red;">[GitHub Project (Click Here)](https://github.com/bhavishy2801/RamSat)</span>
 
+---
+
+
+## References
+
+1. ***Sr. Prof. Mohit Kumar Jangid, Lecture Slides (Mathematics for Computing), IIT Jodhpur, 2025***
+2. F. P. Ramsey, *"On a Problem of Formal Logic"*, Proc. London Math. Soc., 1930
+3. P. Erdős, *"Some remarks on the theory of graphs"*, Bull. AMS, 1959
+4. R. L. Graham, B. L. Rothschild, J. H. Spencer, *"Ramsey Theory"*, Wiley, 1990
+5. V. Chvátal, *"A Note on Ramsey Numbers"*, J. Combinatorial Theory, 1970
 
 ---
 
@@ -122,15 +132,14 @@ manim -pqh animations/erdos_probabilistic_method.py ErdosProbabilisticLowerBound
 ```
 
 ## Example GUI Output
-```text
-# Input
-- Red Clique Size k1 = 3
-- Blue Clique Size k2 = 3
+
+**Input Parameters:**
+- Red Clique Size \( k_1 \) = 3
+- Blue Clique Size \( k_2 \) = 3
 - Trials = 5000
 - Max Vertices = 20
-```
 
-## Output
+**Output:**
 ```text
 ✓ ESTIMATION COMPLETE
 R(3, 3) = 6
@@ -142,7 +151,7 @@ Computation Time: 2.51s
 Graph Density: 1.0000
 ```
 
-### Visualization
+**Visualization:**
 - Red and blue edges drawn dynamically on a complete graph layout.
 - Real-time progress indicator ("Testing n = 15/20 (75%)").
 
@@ -175,20 +184,11 @@ Graph Density: 1.0000
 
 ## Future Enhancements
 
-- 🔹 SAT-based exact solver integration
-- 🔹 Multi-color Ramsey number estimation
-- 🔹 GPU-accelerated Monte Carlo simulation
-- 🔹 Web-based interactive explorer
-- 🔹 AI-based pattern predictor for unknown Ramsey bounds
-
----
-
-## References
-
-1. F. P. Ramsey, "On a Problem of Formal Logic", Proc. London Math. Soc., 1930
-2. P. Erdős, "Some remarks on the theory of graphs", Bull. AMS, 1959
-3. R. L. Graham, B. L. Rothschild, J. H. Spencer, "Ramsey Theory", Wiley, 1990
-4. V. Chvátal, "A Note on Ramsey Numbers", J. Combinatorial Theory, 1970
+🔹 SAT-based exact solver integration
+🔹 Multi-color Ramsey number estimation
+🔹 GPU-accelerated Monte Carlo simulation
+🔹 Web-based interactive explorer
+🔹 AI-based pattern predictor for unknown Ramsey bounds
 
 ---
 
