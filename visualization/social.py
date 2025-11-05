@@ -1,122 +1,98 @@
 from manim import *
-import itertools
-import random
-import math
-import numpy as np
+import itertools, random, numpy as np
 
-# 3D Social Media Clusters visualization (Ramsey-inspired)
-# Smaller scale, limited rotation (~60 degrees), deterministic random layout of nodes and edges.
-# Highlights detected monochromatic (Ramsey-style) triangles and dense micro-clusters in green/yellow.
-
-class Ramsey3D(ThreeDScene):
+class RamseyInNeuralNets(Scene):
     def construct(self):
-        title = Title("Social Media Clusters -- Ramsey Theory")
-        self.add(title)
+        # Title
+        title = Text("Cooking up Patterns — Ramsey Theory in Neural Nets", font_size=36)
+        title.to_edge(UP)
+        self.play(Write(title))
+        self.wait(1)
 
-        N = 200
-        EDGE_COUNT = 200
-        SEED = 42
-        POINT_SCALE = 0.05  # smaller
-        R = 2.0  # smaller spatial cube radius
+        N = 20
+        random.seed(2)
 
-        random.seed(SEED)
+        # Initial random positions
+        positions = [np.array([random.uniform(-5, 5), random.uniform(-2, 2), 0]) for _ in range(N)]
+        nodes = [Dot(pos, radius=0.12, color=GREY_B) for pos in positions]
+        node_group = VGroup(*nodes)
 
-        # Generate deterministic random 3D points within a cube
-        points = [np.array([random.uniform(-R, R), random.uniform(-R, R), random.uniform(-R, R)]) for _ in range(N)]
-        dots = VGroup(*[Dot(point=pt, radius=POINT_SCALE) for pt in points])
+        self.play(FadeIn(node_group))
+        self.wait(0.5)
 
-        # A few labels for first 8 nodes only
-        labels = VGroup(*[MathTex(str(i + 1)).scale(0.4).next_to(points[i], UP * 0.15) for i in range(min(8, N))])
+        # Random edges (random weight init)
+        edges = []
+        for i, j in itertools.combinations(range(N), 2):
+            if random.random() < 0.12:
+                line = Line(nodes[i].get_center(), nodes[j].get_center(), stroke_opacity=0.5)
+                edges.append(line)
 
-        # Deterministically choose edges
-        all_pairs = list(itertools.combinations(range(N), 2))
-        random.shuffle(all_pairs)
-        chosen_pairs = all_pairs[:EDGE_COUNT]
+        edge_group = VGroup(*edges)
+        self.play(LaggedStartMap(Create, edge_group, lag_ratio=0.01), run_time=2)
+        self.wait(0.5)
 
-        # Assign deterministic red/blue coloring
-        color_map = {}
-        edges = {}
-        edge_group = VGroup()
-        for (i, j) in chosen_pairs:
-            col = BLUE if random.random() < 0.5 else RED
-            color_map[(i, j)] = col
-            line = Line(points[i], points[j], stroke_width=1.3, color=col)
-            edges[(i, j)] = line
-            edge_group.add(line)
+        # Caption 1
+        caption1 = Text("Even random graphs contain hidden structure...", font_size=28).next_to(title, DOWN)
+        self.play(Write(caption1))
+        self.wait(1.5)
 
-        graph_group = VGroup(edge_group, dots, labels).center()
+        # Highlight a "structured" subgraph (sample)
+        sample_nodes = random.sample(range(N), 5)
+        highlights = VGroup(*[nodes[i].copy().set_color(YELLOW).scale(1.5) for i in sample_nodes])
+        self.play(FadeIn(highlights))
+        self.wait(0.8)
 
-        # Add 3D bounding cube for spatial reference
-        wireframe = VGroup()
-        cube_points = [np.array([sx * R, sy * R, sz * R]) for sx in (-1, 1) for sy in (-1, 1) for sz in (-1, 1)]
-        for a, b in itertools.combinations(cube_points, 2):
-            if np.count_nonzero((a > 0) != (b > 0)) == 1:
-                line = Line(a, b, stroke_width=0.5, color=GREY_A)
-                wireframe.add(line)
+        # Ramsey theory claim
+        claim = Tex(
+            "Ramsey theory: Any large enough graph must contain structured subgraphs.",
+            font_size=26
+        ).to_edge(DOWN)
+        self.play(Write(claim))
+        self.wait(1.5)
 
-        self.add(wireframe)
-        self.play(LaggedStartMap(FadeIn, dots, lag_ratio=0.005), run_time=2.0)
-        self.play(Create(edge_group), run_time=2.0)
-        self.play(*[Write(l) for l in labels], run_time=0.5)
+        # Define neural network layout target positions
+        layer_x = [-5, -2, 1, 4]
+        new_positions = []
+        for idx, node in enumerate(nodes):
+            layer = idx % 4
+            x = layer_x[layer]
+            y = (idx // 4 - 2) * 0.8
+            new_positions.append(np.array([x, y, 0]))
 
-        total_rotation = PI / 3  # about 60 degrees total rotation
-        steps = 40
-        rot_per_step = total_rotation / steps
+        # Instead of MoveToTarget, animate each node to its new location
+        self.play(
+            *[node.animate.move_to(new_pos) for node, new_pos in zip(nodes, new_positions)],
+            run_time=2
+        )
+        self.wait(0.5)
 
-        # Detect monochromatic triangles (Ramsey) and local clusters (dense mini-groups)
-        def find_mono_triangle(cmap):
-            adj = {BLUE: {}, RED: {}}
-            for (a, b), c in cmap.items():
-                adj[c].setdefault(a, set()).add(b)
-                adj[c].setdefault(b, set()).add(a)
-            for color in (BLUE, RED):
-                for a in adj[color]:
-                    for b in adj[color][a]:
-                        common = adj[color][a].intersection(adj[color].get(b, set()))
-                        for c in common:
-                            if a < b < c:
-                                return (a, b, c), color
-            return None, None
+        # Remove old edges
+        self.play(FadeOut(edge_group, shift=DOWN * 0.2))
 
-        def find_micro_clusters(edges_dict, threshold=4):
-            node_degree = {}
-            for (a, b) in edges_dict.keys():
-                node_degree[a] = node_degree.get(a, 0) + 1
-                node_degree[b] = node_degree.get(b, 0) + 1
-            high_degree_nodes = [k for k, v in node_degree.items() if v >= threshold]
-            if len(high_degree_nodes) < 3:
-                return []
-            clusters = []
-            for i in range(0, len(high_degree_nodes) - 3, 3):
-                clusters.append(high_degree_nodes[i:i + 3])
-            return clusters
+        # Create edges between layers (feedforward look)
+        new_edges = []
+        for i in range(N):
+            for j in range(N):
+                li, lj = i % 4, j % 4
+                if lj == li + 1 and random.random() < 0.4:
+                    new_edges.append(Line(nodes[i].get_center(), nodes[j].get_center(), stroke_opacity=0.5))
+        new_edge_group = VGroup(*new_edges)
+        self.play(LaggedStartMap(Create, new_edge_group, lag_ratio=0.02), run_time=2)
+        self.wait(0.5)
 
-        tri, tri_col = find_mono_triangle(color_map)
-        clusters = find_micro_clusters(edges)
+        # Pulse edges to show “learning”
+        pulse_edges = VGroup(*[edge.copy().set_color(BLUE_E).set_stroke(width=3, opacity=0.8) for edge in new_edges])
+        self.play(LaggedStartMap(Create, pulse_edges, lag_ratio=0.02), run_time=3)
+        self.wait(0.5)
 
-        # Animate rotation and highlight structures
-        for k in range(steps):
-            self.play(Rotate(graph_group, angle=rot_per_step, axis=UP), run_time=0.15)
-            if k == steps // 3 and tri is not None:
-                a, b, c = tri
-                tri_face = Polygon(points[a], points[b], points[c])
-                tri_face.set_fill(tri_col, opacity=0.25)
-                tri_face.set_stroke(width=0)
-                self.play(Create(tri_face), run_time=0.8)
-            if k == steps // 2 and clusters:
-                cluster_faces = []
-                for cluster in clusters[:5]:
-                    if len(cluster) >= 3:
-                        pts = [points[i] for i in cluster[:3]]
-                        col = GREEN if random.random() < 0.5 else YELLOW
-                        face = Polygon(*pts)
-                        face.set_fill(col, opacity=0.25)
-                        face.set_stroke(width=0)
-                        cluster_faces.append(face)
-                self.play(*[Create(f) for f in cluster_faces], run_time=1.2)
+        # Final explanatory text
+        final_text = Tex(
+            "Neural networks exploit guaranteed structure —\\\\"
+            "Ramsey theory ensures it’s always there.",
+            font_size=26
+        ).next_to(claim, UP)
+        self.play(Write(final_text))
+        self.wait(2.5)
 
-        end_note = Tex(r"Highlighted real clusters (green/yellow) \& Ramsey triangles (red/blue)")
-        end_note.scale(0.6)
-        end_note.to_edge(DOWN)
-        self.play(Write(end_note))
-        self.wait(2)
+        self.play(FadeOut(VGroup(title, node_group, new_edge_group, pulse_edges, claim, caption1, final_text)))
+        self.wait(0.5)
